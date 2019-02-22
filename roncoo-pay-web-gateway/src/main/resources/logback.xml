@@ -8,7 +8,6 @@
     <!-- 文件路径 -->
     <property name="FILE_PATH" value="/opt/roncoo/logs"/>
 
-
     <!-- 控制台 -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>

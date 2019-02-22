@@ -18,7 +18,6 @@ public class CnpPayService {
     private static final Logger LOG = LoggerFactory.getLogger(CnpPayService.class);
 
     /**
-     *
      * @param rpUserPayConfig
      * @param httpServletRequest
      */
@@ -35,7 +34,7 @@ public class CnpPayService {
             }
 
             String merchantServerIp = rpUserPayConfig.getMerchantServerIp();
-            if (merchantServerIp.indexOf(ip) < 0) {
+            if (!merchantServerIp.contains(ip)) {
                 throw new TradeBizException(TradeBizException.TRADE_PARAM_ERROR, "非法IP请求");
             }
 

@@ -13,7 +13,6 @@ public class WebSampleShopApplication extends SpringBootServletInitializer {
         return application.sources(WebSampleShopApplication.class);
     }
 
-
     public static void main(String[] args) {
         SpringApplication.run(WebSampleShopApplication.class, args);
     }

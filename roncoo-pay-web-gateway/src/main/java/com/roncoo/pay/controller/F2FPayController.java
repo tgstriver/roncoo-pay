@@ -26,14 +26,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-
-/**
- * <b>功能说明:
- * </b>
- *
- * @author Peter
- * <a href="http://www.roncoo.com">龙果学院(www.roncoo.com)</a>
- */
 @Controller
 @RequestMapping(value = "/f2fPay")
 public class F2FPayController extends BaseController {
@@ -58,7 +50,7 @@ public class F2FPayController extends BaseController {
      */
     @RequestMapping("/doPay")
     public String initPay(HttpServletRequest httpServletRequest, ModelMap modelMap) {
-        Map<String, Object> paramMap = new HashMap<String, Object>();
+        Map<String, Object> paramMap = new HashMap<>();
 
         //获取商户传入参数
         String payKey = getString_UrlDecode_UTF8("payKey"); // 企业支付KEY
@@ -93,6 +85,7 @@ public class F2FPayController extends BaseController {
         paramMap.put("field4", field4);
         String field5 = getString_UrlDecode_UTF8("field5"); // 扩展字段5
         paramMap.put("field5", field5);
+
         //格式化时间
         Date orderDate = DateUtils.parseDate(orderDateStr, "yyyyMMdd");
         Date orderTime = DateUtils.parseDate(orderTimeStr, "yyyyMMddHHmmss");
@@ -113,11 +106,8 @@ public class F2FPayController extends BaseController {
         BigDecimal orderPrice = BigDecimal.valueOf(Double.valueOf(orderPriceStr));
         F2FPayResultVo f2FPayResultVo = rpTradePaymentManagerService.f2fPay(payKey, authCode, productName, orderNo, orderDate, orderTime, orderPrice, payWayCode, orderIp, remark, field1, field2, field3, field4, field5);
 
-        //String payResultJson = JSONObject.toJSONString(f2FPayResultVo);
         logger.debug("条码支付--支付结果==>{}", f2FPayResultVo);
         modelMap.put("result", f2FPayResultVo);
-        // httpServletResponse.setContentType("text/text;charset=UTF-8");
-        // write(httpServletResponse, payResultJson);
         return "/f2fAffirmPay";
     }
 

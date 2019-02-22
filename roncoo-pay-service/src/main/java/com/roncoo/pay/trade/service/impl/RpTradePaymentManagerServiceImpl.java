@@ -217,7 +217,8 @@ public class RpTradePaymentManagerServiceImpl implements RpTradePaymentManagerSe
             throw new UserBizException(UserBizException.USER_PAY_CONFIG_ERRPR, "用户支付配置有误");
         }
 
-        String merchantNo = rpUserPayConfig.getUserNo();// 商户编号
+        // 商户编号
+        String merchantNo = rpUserPayConfig.getUserNo();
         RpUserInfo rpUserInfo = rpUserInfoService.getDataByMerchentNo(merchantNo);
         if (rpUserInfo == null) {
             throw new UserBizException(UserBizException.USER_IS_NULL, "用户不存在");
